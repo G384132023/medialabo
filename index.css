@@ -1,0 +1,29 @@
+h1 {
+	color: white;
+	text-shadow: 
+	0 0 1em red,
+    0 0 0.2em red;
+}
+
+h2 {
+	color: white;
+	text-shadow: 
+	0 0 1em orange,
+    0 0 0.2em orange;  
+}
+
+h3{
+    color: orange;
+}
+
+a:link{
+    color: blue;
+}
+
+a:visited{
+    color: purple;
+}
+
+a:hover{
+    text-decoration: none;
+}
