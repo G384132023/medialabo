@@ -3,6 +3,7 @@ h1 {
 	text-shadow: 
 	0 0 1em red,
     0 0 0.2em red;
+    border-bottom-style: double;
 }
 
 h2 {
