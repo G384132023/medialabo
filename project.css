@@ -1,0 +1,9 @@
+h1{
+	color: #3f3faf;
+	background: linear-gradient(.25turn, white, 25%, #c44d4d);
+}
+
+li{
+    color: orange;
+    border-bottom: solid #6dc1ee;
+}
