@@ -3,7 +3,6 @@ h1 {
 	text-shadow: 
 	0 0 1em red,
     0 0 0.2em red;
-    border-bottom-style: double;
 }
 
 h2 {
@@ -11,10 +10,12 @@ h2 {
 	text-shadow: 
 	0 0 1em orange,
     0 0 0.2em orange;  
+    border-bottom: thick double #6dc1ee;
 }
 
 h3{
     color: orange;
+    border-bottom: dashed #6dc1ee;
 }
 
 a:link{
