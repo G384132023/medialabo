@@ -28,6 +28,9 @@ function hantei() {
     console.log("答えは " + kotae + " でした．すでにゲームは終わっています");
   } else if (kotae === yoso) {
     console.log("正解です．おめでとう!");
+    if (kaisu >= 2) {
+        console.log("答えは" + kotae + "でした．すでにゲームは終わっています");
+    } 
   } else {
     if (kaisu === 3) {
       console.log("まちがい．残念でした．答えは " + kotae + " です．");
