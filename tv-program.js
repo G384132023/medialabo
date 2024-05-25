@@ -81,3 +81,10 @@ let data = {
 
 /////////////////// 課題3-2 はここから書き始めよう
 
+console.log(data.start_time);
+console.log(data.end_time);
+console.log(data.service.name);
+console.log(data.title);
+console.log(data.subtitle);
+console.log(data.content);
+console.log(data.act);
