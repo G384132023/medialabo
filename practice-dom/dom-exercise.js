@@ -46,4 +46,9 @@ for (let li of ul) {
 }
 
 // 練習4-5 箇条書き追加プログラム
-
+var location = document.getElementById('location');
+for (const city of data) {
+	var li1 = document.createElement('li1');
+	li.textContent = city.name + " ... 緯度: " + city.lat + ", 経度: " + city.lng;
+	location.appendChild(li1);
+}
