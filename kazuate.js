@@ -27,18 +27,13 @@ function hantei() {
   if (kaisu >= 4) {
     console.log("答えは " + kotae + " でした．すでにゲームは終わっています");
     s = ("答えは " + kotae + " でした．すでにゲームは終わっています");
-  } else if (kotae === yoso) {
-    console.log("正解です．おめでとう!");
-    s = ("正解です．おめでとう!");
-    if (kaisu >= 2) {
-        console.log("答えは" + kotae + "でした．すでにゲームは終わっています");
-        s = ("答えは" + kotae + "でした．すでにゲームは終わっています");
-    } 
+  } else if (kotae === 3) {
+    console.log("まちがい．残念でした．答えは " + kotae + " です．");
+    s = ("まちがい．残念でした．答えは " + kotae + " です．");
+  } else if(kotae === Number(yoso)){
+      console.log("正解です.おめでとう！");
+      s = ("正解です.おめでとう！");
   } else {
-    if (kaisu === 3) {
-      console.log("まちがい．残念でした．答えは " + kotae + " です．");
-      s = ("まちがい．残念でした．答えは " + kotae + " です．");
-    } else if (kaisu <= 2) {
       if (yoso < kotae) {
           console.log("まちがい．答えはもっと大きいですよ");
           s = ("まちがい．答えはもっと大きいですよ");
@@ -47,7 +42,7 @@ function hantei() {
           s = ("まちがい．答えはもっと小さいですよ");
       }
     }
-  }
+
 
   let a1 = document.querySelector('span#kaisu');
   a1.textContent = kaisu;
