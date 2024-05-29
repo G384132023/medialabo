@@ -81,10 +81,18 @@ let data = {
 
 /////////////////// 課題3-2 はここから書き始めよう
 
-console.log(data.start_time);
-console.log(data.end_time);
-console.log(data.service.name);
-console.log(data.title);
-console.log(data.subtitle);
-console.log(data.content);
-console.log(data.act);
+console.log("番組開始時刻" + data.list.g1[0].start_time);
+console.log("番組終了時刻" + data.list.g1[0].end_time);
+console.log("チャンネル" + data.list.g1[0].service.name);
+console.log("番組名" + data.list.g1[0].title);
+console.log("番組サブタイトル" + data.list.g1[0].subtitle);
+console.log("番組説明分" + data.list.g1[0].content);
+console.log("出演者" + data.list.g1[0].act);
+
+console.log("番組開始時刻" + data.list.g1[1].start_time);
+console.log("番組終了時刻" + data.list.g1[1].end_time);
+console.log("チャンネル" + data.list.g1[1].service.name);
+console.log("番組名" + data.list.g1[1].title);
+console.log("番組サブタイトル" + data.list.g1[1].subtitle);
+console.log("番組説明分" + data.list.g1[1].content);
+console.log("出演者" + data.list.g1[1].act);
