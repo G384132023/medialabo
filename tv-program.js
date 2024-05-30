@@ -81,6 +81,7 @@ let data = {
 
 /////////////////// 課題3-2 はここから書き始めよう
 
+
 console.log("番組開始時刻" + data.list.g1[0].start_time);
 console.log("番組終了時刻" + data.list.g1[0].end_time);
 console.log("チャンネル" + data.list.g1[0].service.name);
@@ -96,3 +97,46 @@ console.log("番組名" + data.list.g1[1].title);
 console.log("番組サブタイトル" + data.list.g1[1].subtitle);
 console.log("番組説明分" + data.list.g1[1].content);
 console.log("出演者" + data.list.g1[1].act);
+
+
+
+let resultDiv = document.getElementById('result');
+function appendProgramInfo(program) {
+    let programContainer = document.createElement('div');
+    programContainer.classList.add('program');
+
+    let startTime = document.createElement('li');
+    startTime.textContent = "番組開始時刻: " + program.start_time;
+
+    let endTime = document.createElement('li');
+    endTime.textContent = "番組終了時刻: " + program.end_time;
+
+    let channel = document.createElement('li');
+    channel.textContent = "チャンネル: " + program.service.name;
+
+    let title = document.createElement('li');
+    title.textContent = "番組名: " + program.title;
+
+    let subtitle = document.createElement('li');
+    subtitle.textContent = "番組サブタイトル: " + program.subtitle;
+
+    let content = document.createElement('li');
+    content.textContent = "番組説明分: " + program.content;
+
+    let act = document.createElement('li');
+    act.textContent = "出演者: " + program.act;
+
+    programContainer.appendChild(startTime);
+    programContainer.appendChild(endTime);
+    programContainer.appendChild(channel);
+    programContainer.appendChild(title);
+    programContainer.appendChild(subtitle);
+    programContainer.appendChild(content);
+    programContainer.appendChild(act);
+
+    resultDiv.appendChild(programContainer);
+}
+
+for (const program of data.list.g1) {
+  appendProgramInfo(program);
+}
