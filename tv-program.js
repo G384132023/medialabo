@@ -81,35 +81,52 @@ let data = {
 
 /////////////////// 課題3-2 はここから書き始めよう
 
+let b = document.querySelector('#answer');
+b.addEventListener('click', print);
+function print() {
+  
+  let url = 'https://www.nishita-lab.org/web-contents/jsons/nhk/' + (service) + (genre) + '-j.json';
+}
 
-console.log("番組開始時刻" + data.list.g1[0].start_time);
-console.log("番組終了時刻" + data.list.g1[0].end_time);
-console.log("チャンネル" + data.list.g1[0].service.name);
-console.log("番組名" + data.list.g1[0].title);
-console.log("番組サブタイトル" + data.list.g1[0].subtitle);
-console.log("番組説明分" + data.list.g1[0].content);
-console.log("出演者" + data.list.g1[0].act);
 
-console.log("番組開始時刻" + data.list.g1[1].start_time);
-console.log("番組終了時刻" + data.list.g1[1].end_time);
-console.log("チャンネル" + data.list.g1[1].service.name);
-console.log("番組名" + data.list.g1[1].title);
-console.log("番組サブタイトル" + data.list.g1[1].subtitle);
-console.log("番組説明分" + data.list.g1[1].content);
-console.log("出演者" + data.list.g1[1].act);
 
 
 
 let resultDiv = document.getElementById('result');
+
+function formatDateTime(dateTimeString) {
+  let date = new Date(dateTimeString);
+  let year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+  let seconds = date.getSeconds();
+
+  if (month < 10) month = '0' + month;
+  if (day < 10) day = '0' + day;
+  if (hours < 10) hours = '0' + hours;
+  if (minutes < 10) minutes = '0' + minutes;
+  if (seconds < 10) seconds = '0' + seconds;
+
+  return year + "年" + month + "月" + day + "日" + hours + ":" + minutes + ":" + seconds;
+}
+
+let i = 1;
+
 function appendProgramInfo(program) {
     let programContainer = document.createElement('div');
     programContainer.classList.add('program');
 
+    let kensaku = document.createElement('p');
+    kensaku.textContent = "検索結果" + i + "件目"
+    i++;
+
     let startTime = document.createElement('li');
-    startTime.textContent = "番組開始時刻: " + program.start_time;
+    startTime.textContent = "番組開始時刻: " + formatDateTime(program.start_time);
 
     let endTime = document.createElement('li');
-    endTime.textContent = "番組終了時刻: " + program.end_time;
+    endTime.textContent = "番組終了時刻: " + formatDateTime(program.end_time);
 
     let channel = document.createElement('li');
     channel.textContent = "チャンネル: " + program.service.name;
@@ -126,6 +143,7 @@ function appendProgramInfo(program) {
     let act = document.createElement('li');
     act.textContent = "出演者: " + program.act;
 
+    programContainer.appendChild(kensaku);
     programContainer.appendChild(startTime);
     programContainer.appendChild(endTime);
     programContainer.appendChild(channel);
@@ -136,7 +154,6 @@ function appendProgramInfo(program) {
 
     resultDiv.appendChild(programContainer);
 }
-
 for (const program of data.list.g1) {
   appendProgramInfo(program);
 }
