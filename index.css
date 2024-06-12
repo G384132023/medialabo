@@ -1,3 +1,7 @@
+body{
+    background-color: hwb(60 76% 2%);
+}
+
 h1 {
 	color: white;
 	text-shadow: 
@@ -29,3 +33,8 @@ a:visited{
 a:hover{
     text-decoration: none;
 }
+
+li{
+    color: rgb(255, 111, 0);
+}
+

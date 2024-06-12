@@ -81,18 +81,23 @@ let data = {
 
 /////////////////// 課題3-2 はここから書き始めよう
 
-let b = document.querySelector('#answer');
-b.addEventListener('click', print);
-function print() {
+let s1 = document.querySelector('tbody#b1');
+
+let b = document.querySelector('button#print');
+b.addEventListener('click', sendRequest);
+
+function sendRequest(){
   
-  let url = 'https://www.nishita-lab.org/web-contents/jsons/nhk/' + (service) + (genre) + '-j.json';
+  const Cha = document.getElementById('channel').value;
+  const Gan = document.getElementById('genre').value;
+
+  let url='https://www.nishita-lab.org/web-contents/jsons/nhk/'+Cha+'-'+Gan+'-j.json';
+
+  axios.get(url)
+  .then(hantei)   // 通信成功
+  .catch(showError)   // 通信失敗
+  .then(finish);      // 通信の最後の処理
 }
-
-
-
-
-
-let resultDiv = document.getElementById('result');
 
 function formatDateTime(dateTimeString) {
   let date = new Date(dateTimeString);
@@ -112,48 +117,68 @@ function formatDateTime(dateTimeString) {
   return year + "年" + month + "月" + day + "日" + hours + ":" + minutes + ":" + seconds;
 }
 
-let i = 1;
+function hantei(resp) {
+  const Cha = document.getElementById('channel').value;
+  const Gan = document.getElementById('genre').value;
 
-function appendProgramInfo(program) {
-    let programContainer = document.createElement('div');
-    programContainer.classList.add('program');
+    let data = resp.data;
 
-    let kensaku = document.createElement('p');
-    kensaku.textContent = "検索結果" + i + "件目"
-    i++;
+    if (typeof data === 'string') {
+        data = JSON.parse(data);
+    }
 
-    let startTime = document.createElement('li');
-    startTime.textContent = "番組開始時刻: " + formatDateTime(program.start_time);
+  let pyoso1 = document.querySelectorAll('td');
+  for (let TD of pyoso1) {
+    TD.remove();
+  }
+  let TR = document.querySelectorAll('tr');
+  for (let T of TR) {
+    T.remove();
+  }
 
-    let endTime = document.createElement('li');
-    endTime.textContent = "番組終了時刻: " + formatDateTime(program.end_time);
-
-    let channel = document.createElement('li');
-    channel.textContent = "チャンネル: " + program.service.name;
-
-    let title = document.createElement('li');
-    title.textContent = "番組名: " + program.title;
-
-    let subtitle = document.createElement('li');
-    subtitle.textContent = "番組サブタイトル: " + program.subtitle;
-
-    let content = document.createElement('li');
-    content.textContent = "番組説明分: " + program.content;
-
-    let act = document.createElement('li');
-    act.textContent = "出演者: " + program.act;
-
-    programContainer.appendChild(kensaku);
-    programContainer.appendChild(startTime);
-    programContainer.appendChild(endTime);
-    programContainer.appendChild(channel);
-    programContainer.appendChild(title);
-    programContainer.appendChild(subtitle);
-    programContainer.appendChild(content);
-    programContainer.appendChild(act);
-
-    resultDiv.appendChild(programContainer);
+  if(data === null){
+    let a = document.createElement('p');
+    a.textContent =("検索結果に合う番組はありませんでした.");
+    s1.insertAdjacentElement('beforeend', aaa);
+  }else if(data.list[Cha]) {
+    for (let n of data.list[Cha]) {  
+      if (n.genres.includes(Gan)) {
+        let q1 = document.createElement('tr');
+        let p1 = document.createElement('td');
+  
+        p1.textContent = formatDateTime(n.start_time);
+        s1.insertAdjacentElement('beforeend', q1);
+        s1.insertAdjacentElement('beforeend', p1);
+  
+        let p2 = document.createElement('td');
+        p2.textContent = formatDateTime(n.end_time);
+        s1.insertAdjacentElement('beforeend', p2);
+  
+        let p3 = document.createElement('td');
+        p3.textContent = n.title;
+        s1.insertAdjacentElement('beforeend', p3);
+  
+        let p4 = document.createElement('td');
+        p4.textContent = n.subtitle;
+        s1.insertAdjacentElement('beforeend', p4);
+  
+        let p5 = document.createElement('td');
+        p5.textContent = n.content;
+        s1.insertAdjacentElement('beforeend', p5);
+  
+        let p6 = document.createElement('td');
+        p6.textContent = n.act;
+        s1.insertAdjacentElement('beforeend', p6);
+  
+      }
+    }
+  }  
 }
-for (const program of data.list.g1) {
-  appendProgramInfo(program);
+  
+function showError(err){
+    console.log(err);
+}
+  
+function finish(){
+    console.log('Ajax通信が終わりました');
 }
